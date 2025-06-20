@@ -7,9 +7,6 @@
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_p1qf1")
 
-[node name="Enemy" parent="." instance=ExtResource("1_th188")]
-position = Vector2(101, 218)
-
 [node name="Tu Turno" type="Label" parent="."]
 offset_left = 250.0
 offset_top = 50.0
@@ -33,5 +30,26 @@ offset_top = 3.0
 offset_right = 39.0
 offset_bottom = 43.0
 
-[node name="Player" parent="." instance=ExtResource("3_p1qf1")]
+[node name="ActionMenu" type="Panel" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AtacarButton" type="Button" parent="UI/ActionMenu"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="PasarButton" type="Button" parent="UI/ActionMenu"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Allies" type="Node2D" parent="."]
+
+[node name="Player" parent="Allies" instance=ExtResource("3_p1qf1")]
 position = Vector2(479, 212)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("1_th188")]
+position = Vector2(101, 218)

@@ -1,59 +1,69 @@
 extends Node2D
 
-@onready var player = $Player
-@onready var enemy = $Enemy
-@onready var turn_queue_display = $UI/TurnQueueDisplay
+signal turn_ended(actor)
 
-var turn_order = []
-var current_actor: Node = null
-var waiting_for_input := false
+# Obtiene todos los jugadores y enemigos
+@onready var allies_raw = $Allies.get_children()
+@onready var enemies_raw = $Enemies.get_children()
+
+# Todos los actores vivos
+var allies: Array[Player] = []
+var enemies: Array[Enemy] = []
+var actors: Array[Actor] = []
+var turn_queue: Array[Actor] = []
+var current_actor: Actor = null
 
 func _ready():
-	# Inicializa el orden de turnos con instancias reales
-	turn_order = [player, enemy, player, enemy]
-	update_turn_display()
-	process_turn()
+	connect("turn_ended", Callable(self, "_on_turn_ended"))
 
-func _process(delta):
-	# Captura input si es turno del jugador
-	if waiting_for_input and Input.is_action_just_pressed("attack"):
-		var target = get_node_or_null("Enemy")
-		if target:
-			target.take_damage(25)
-		waiting_for_input = false
-		end_turn()
+	# Castear a Player y Enemy explícitamente
+	for node in allies_raw:
+		allies.append(node as Player)
+	for node in enemies_raw:
+		enemies.append(node as Enemy)
 
-func process_turn():
-	# Determina quién actúa en este turno
-	current_actor = turn_order[0]
+	# Registrar todos los actores vivos
+	actors = allies + enemies
+	turn_queue = actors.duplicate()
+	sort_turn_queue()
 
-	if current_actor.is_player:
-		waiting_for_input = true
-		print("Turno del jugador")
-	else:
-		print("Turno del enemigo")
-		await get_tree().create_timer(1.0).timeout
-		enemy_take_action()
+	start_next_turn()
 
-func enemy_take_action():
-	var target = get_node_or_null("Player")
-	if target:
-		target.take_damage(15)
-	end_turn()
+func sort_turn_queue():
+	# Ordena de mayor a menor velocidad
+	turn_queue.sort_custom(func(a, b): return a.get_speed() > b.get_speed())
 
-func end_turn():
-	# Rota el orden y continúa con el siguiente turno
-	var first = turn_order.pop_front()
-	turn_order.append(first)
-	update_turn_display()
-	process_turn()
+func start_next_turn():
+	if check_battle_end():
+		return
 
-func update_turn_display():
-	# Actualiza la visualización de la lista de turnos
-	for child in turn_queue_display.get_children():
-		child.queue_free()
+	if turn_queue.is_empty():
+		# Repetir ciclo de turnos con actores vivos
+		turn_queue = actors.filter(func(actor): return actor.is_alive).duplicate()
+		sort_turn_queue()
 
-	for actor in turn_order:
-		var label = Label.new()
-		label.text = actor.name
-		turn_queue_display.add_child(label)
+	if turn_queue.is_empty():
+		print("No quedan actores vivos. Fin del combate.")
+		return
+
+	current_actor = turn_queue.pop_front()
+
+	if not current_actor.is_alive:
+		start_next_turn()
+		return
+
+	print("Turno de: " + current_actor.name_actor)
+	current_actor.act()
+
+func _on_turn_ended(actor: Actor):
+	await get_tree().create_timer(0.5).timeout
+	start_next_turn()
+
+func check_battle_end() -> bool:
+	if enemies.all(func(e): return not e.is_alive):
+		print("¡Victoria!")
+		return true
+	if allies.all(func(a): return not a.is_alive):
+		print("Derrota...")
+		return true
+	return false
