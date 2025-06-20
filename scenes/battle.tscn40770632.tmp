@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://4iljoiff7jit"]
+
+[ext_resource type="Script" uid="uid://7vmqblrx4iff" path="res://scripts/battle/battle.gd" id="1_a12nh"]
+[ext_resource type="Texture2D" uid="uid://dv7co84v2cqqv" path="res://imagenes/Cuadrado Azul.png" id="2_lpir7"]
+[ext_resource type="Script" uid="uid://sv0uptqjfakk" path="res://scripts/battle/enemy.gd" id="3_6vh42"]
+[ext_resource type="Texture2D" uid="uid://dtn1pyed7lhw6" path="res://imagenes/Cuadrado Rojo.png" id="4_4k1nj"]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_a12nh")
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(500, 200)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_lpir7")
+
+[node name="Enemy" type="Node2D" parent="."]
+position = Vector2(100, 200)
+script = ExtResource("3_6vh42")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_4k1nj")
+
+[node name="Tu Turno" type="Label" parent="."]
+offset_left = 250.0
+offset_top = 50.0
+offset_right = 320.0
+offset_bottom = 73.0
+text = "Tu Turno"
+
+[node name="Atacar" type="Button" parent="."]
+offset_left = 250.0
+offset_top = 350.0
+offset_right = 309.0
+offset_bottom = 381.0
+text = "Atacar
+"
