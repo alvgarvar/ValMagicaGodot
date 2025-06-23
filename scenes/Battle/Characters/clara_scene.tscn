@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqy1kmk0lo1h7"]
+
+[ext_resource type="PackedScene" uid="uid://d2f3lxsaaue3r" path="res://scenes/Battle/Items/player.tscn" id="1_ib3js"]
+[ext_resource type="Script" uid="uid://4b8wqeiiva8" path="res://scripts/Battle/Characters/clara_char.gd" id="2_suu15"]
+
+[node name="Clara" instance=ExtResource("1_ib3js")]
+script = ExtResource("2_suu15")

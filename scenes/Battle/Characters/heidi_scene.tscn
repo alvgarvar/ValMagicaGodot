@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnnr6n5jy0oxw"]
+
+[ext_resource type="PackedScene" uid="uid://d2f3lxsaaue3r" path="res://scenes/Battle/Items/player.tscn" id="1_y4l51"]
+[ext_resource type="Script" uid="uid://c84ejn50jhd3s" path="res://scripts/Battle/Characters/heidi_char.gd" id="2_fm0al"]
+
+[node name="Heidi" instance=ExtResource("1_y4l51")]
+script = ExtResource("2_fm0al")

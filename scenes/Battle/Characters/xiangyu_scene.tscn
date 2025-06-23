@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsvtucufmluhv"]
+
+[ext_resource type="PackedScene" uid="uid://d2f3lxsaaue3r" path="res://scenes/Battle/Items/player.tscn" id="1_kd5g8"]
+[ext_resource type="Script" uid="uid://gnw7ix2v87ud" path="res://scripts/Battle/Characters/xiangyu_char.gd" id="2_c8643"]
+
+[node name="XiangYu" instance=ExtResource("1_kd5g8")]
+script = ExtResource("2_c8643")

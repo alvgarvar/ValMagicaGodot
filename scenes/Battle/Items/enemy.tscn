@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://pqq3b13w2lyf"]
+
+[ext_resource type="PackedScene" uid="uid://bmblhgbtl0n2j" path="res://scenes/Battle/Items/actor.tscn" id="1_5rraf"]
+[ext_resource type="Texture2D" uid="uid://dtn1pyed7lhw6" path="res://imagenes/Cuadrado Rojo.png" id="2_61vvl"]
+[ext_resource type="Script" uid="uid://bri7ilvyqd74t" path="res://scripts/Battle/Items/enemy.gd" id="3_x205o"]
+
+[node name="Enemy" instance=ExtResource("1_5rraf")]
+script = ExtResource("3_x205o")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_61vvl")

@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://4iljoiff7jit"]
+
+[ext_resource type="Script" uid="uid://du0rvv1vd1xc3" path="res://scripts/Battle/battle.gd" id="1_jl7sv"]
+[ext_resource type="Script" uid="uid://c03dq2j8x6wdp" path="res://scripts/Battle/TargetSelector.gd" id="2_mpo2y"]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_jl7sv")
+
+[node name="Tu Turno" type="Label" parent="."]
+offset_left = 519.0
+offset_top = 69.0
+offset_right = 589.0
+offset_bottom = 92.0
+text = "Tu Turno"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TurnQueueDisplay" type="VBoxContainer" parent="UI"]
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 39.0
+offset_bottom = 43.0
+
+[node name="ActionMenu" type="Panel" parent="UI"]
+offset_top = 467.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="AttackButton" type="Button" parent="UI/ActionMenu"]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 44.0
+offset_right = 495.0
+offset_bottom = 134.0
+text = "Attack"
+
+[node name="DefendButton" type="Button" parent="UI/ActionMenu"]
+layout_mode = 0
+offset_left = 706.0
+offset_top = 42.0
+offset_right = 1081.0
+offset_bottom = 133.0
+text = "Defend"
+
+[node name="AlliesContainer" type="Node2D" parent="."]
+position = Vector2(2, 3)
+
+[node name="AllySlot1" type="Marker2D" parent="AlliesContainer"]
+position = Vector2(777, 225)
+
+[node name="AllySlot2" type="Marker2D" parent="AlliesContainer"]
+position = Vector2(967, 127)
+
+[node name="AllySlot3" type="Marker2D" parent="AlliesContainer"]
+position = Vector2(968, 357)
+
+[node name="EnemiesContainer" type="Node2D" parent="."]
+position = Vector2(16, 171)
+
+[node name="EnemySlot1" type="Marker2D" parent="EnemiesContainer"]
+position = Vector2(273, -49)
+
+[node name="EnemySlot2" type="Marker2D" parent="EnemiesContainer"]
+position = Vector2(92, 4)
+
+[node name="EnemySlot3" type="Marker2D" parent="EnemiesContainer"]
+position = Vector2(279, 169)
+
+[node name="EnemySlot4" type="Marker2D" parent="EnemiesContainer"]
+position = Vector2(88, 210)
+
+[node name="TargetSelector" type="Node2D" parent="."]
+script = ExtResource("2_mpo2y")

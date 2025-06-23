@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ndh643de3ov0"]
+
+[ext_resource type="PackedScene" uid="uid://pqq3b13w2lyf" path="res://scenes/Battle/Items/enemy.tscn" id="1_htc4g"]
+[ext_resource type="Script" uid="uid://dagh630me7mi5" path="res://scripts/Battle/Enemies/miedillo_ene.gd" id="2_iaoj7"]
+
+[node name="Miedillo" instance=ExtResource("1_htc4g")]
+script = ExtResource("2_iaoj7")

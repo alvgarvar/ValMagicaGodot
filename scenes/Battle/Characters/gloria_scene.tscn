@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://brdsnhkf7w0cx"]
+
+[ext_resource type="PackedScene" uid="uid://d2f3lxsaaue3r" path="res://scenes/Battle/Items/player.tscn" id="1_u07rs"]
+[ext_resource type="Script" uid="uid://bqo7oae68cq15" path="res://scripts/Battle/Characters/gloria_char.gd" id="2_0cktm"]
+
+[node name="Gloria" instance=ExtResource("1_u07rs")]
+script = ExtResource("2_0cktm")
