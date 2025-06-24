@@ -45,6 +45,7 @@ func _on_atacar_pressed():
 func _on_defend_pressed():
 	print(name_actor + " defiende en su turno")
 	close_menu()
+	end_action()
 
 func close_menu():
 	menu_ui.visible = false
